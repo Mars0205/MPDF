@@ -1,4 +1,4 @@
-import PdfReader from './PdfReader';
+import PdfReader from './pdf/PdfReader';
 
 function App() {
   return <PdfReader />;

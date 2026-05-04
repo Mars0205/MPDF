@@ -1,0 +1,269 @@
+.pdf-reader {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f0f0f0;
+}
+
+/* ===== 顶部工具栏 ===== */
+.pdf-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #333;
+  color: #fff;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.pdf-file-btn {
+  padding: 5px 14px;
+  background: #4a90d9;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.pdf-file-btn:hover {
+  background: #357abd;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 22px;
+  background: #555;
+  margin: 0 4px;
+}
+
+.toolbar-btn {
+  padding: 5px 12px;
+  background: transparent;
+  color: #ccc;
+  border: 1px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+  position: relative;
+}
+.toolbar-btn:hover {
+  background: #444;
+  color: #fff;
+}
+.toolbar-btn.active {
+  background: #4a90d9;
+  color: #fff;
+  border-color: #4a90d9;
+}
+
+.badge {
+  display: inline-block;
+  background: #e88;
+  color: #fff;
+  font-size: 10px;
+  min-width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 8px;
+  margin-left: 4px;
+  padding: 0 4px;
+}
+
+/* 翻页控件 */
+.pdf-toolbar button:not(.pdf-file-btn):not(.toolbar-btn) {
+  padding: 4px 10px;
+  background: #555;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.pdf-toolbar button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.page-info {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.jump-input {
+  width: 40px;
+  padding: 3px 4px;
+  text-align: center;
+  border: 1px solid #555;
+  border-radius: 3px;
+  background: #444;
+  color: #fff;
+  font-size: 13px;
+}
+.jump-input:focus {
+  outline: none;
+  border-color: #4a90d9;
+  background: #3a3a3a;
+}
+
+.page-total {
+  font-size: 13px;
+  margin-left: 2px;
+}
+
+/* ===== 主体布局 ===== */
+.pdf-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ===== 侧边栏 ===== */
+.pdf-sidebar {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #2a2a2a;
+  color: #ccc;
+  overflow: hidden;
+}
+
+.sidebar-inner {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* 拖拽手柄 */
+.resize-handle {
+  width: 4px;
+  flex-shrink: 0;
+  background: #444;
+  cursor: col-resize;
+  transition: background 0.15s;
+}
+.resize-handle:hover {
+  background: #4a90d9;
+}
+
+/* 缩略图列表 */
+.thumbnail-list {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.thumbnail-item {
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: border-color 0.15s;
+}
+.thumbnail-item:hover {
+  border-color: #888;
+}
+.thumbnail-item.active {
+  border-color: #4a90d9;
+}
+
+.thumbnail-item canvas {
+  display: block;
+  max-width: 100%;
+  background: #fff;
+}
+
+.thumbnail-label {
+  font-size: 11px;
+  color: #999;
+  margin-top: 2px;
+}
+
+/* 目录列表 */
+.outline-list {
+  padding: 8px 0;
+}
+
+.outline-empty {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+}
+
+.outline-tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.outline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1.2;
+}
+.outline-item:hover {
+  background: #3a3a3a;
+}
+.outline-item.active {
+  background: #3a5070;
+  color: #fff;
+}
+
+.outline-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.outline-page {
+  font-size: 13px;
+  color: #bbb;
+  margin-left: 12px;
+  flex-shrink: 0;
+  text-align: right;
+  min-width: 24px;
+}
+.outline-item.active .outline-page {
+  color: #fff;
+}
+
+/* ===== 主内容 ===== */
+.pdf-content {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pdf-canvas {
+  display: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  background: white;
+}
+.pdf-canvas.visible {
+  display: block;
+}
+
+/* 提示信息 */
+.pdf-placeholder,
+.pdf-message,
+.pdf-error {
+  align-self: center;
+  color: #888;
+  font-size: 16px;
+}
+
+.pdf-error {
+  color: #d32f2f;
+}
