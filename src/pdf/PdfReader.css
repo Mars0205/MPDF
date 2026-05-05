@@ -113,6 +113,13 @@
   margin-left: 2px;
 }
 
+.zoom-label {
+  font-size: 12px;
+  color: #aaa;
+  margin-left: 8px;
+  min-width: 36px;
+}
+
 /* ===== 主体布局 ===== */
 .pdf-body {
   display: flex;

@@ -41,6 +41,11 @@ export function usePdf() {
   // 滚轮翻页节流
   const wheelTimerRef = useRef(0);
 
+  // 缩放
+  const [scale, setScale] = useState(1.5);
+  const scaleRef = useRef(1.5);
+  const zoomTimerRef = useRef(0);
+
   // ==================== 操作逻辑 ====================
 
   /** 渲染 PDF 某一页到主 canvas */
@@ -53,7 +58,7 @@ export function usePdf() {
     }
 
     const page = await doc.getPage(pageNumber);
-    const viewport = page.getViewport({ scale: 1.5 });
+    const viewport = page.getViewport({ scale: scaleRef.current });
 
     const canvas = canvasRef.current;
     canvas.width = viewport.width;
@@ -166,6 +171,8 @@ export function usePdf() {
     setOutline([]);
     setThumbRendered(new Set());
     thumbRefs.current = {};
+    scaleRef.current = 1.5;
+    setScale(1.5);
 
     try {
       const arrayBuffer = await file.arrayBuffer();
@@ -214,11 +221,27 @@ export function usePdf() {
     document.body.style.userSelect = 'none';
   }, []);
 
-  /** 滚轮翻页 — 在内容区域滚动边界处切换页码 */
+  /** 滚轮翻页 & Ctrl+缩放当前页 */
   const handleWheel = useCallback((e) => {
     if (!pdfDoc) return;
 
     const now = Date.now();
+
+    // Ctrl + 滚轮 → 缩放当前页
+    if (e.ctrlKey) {
+      e.preventDefault();
+      if (now - zoomTimerRef.current < 80) return;
+      zoomTimerRef.current = now;
+
+      const delta = e.deltaY > 0 ? -0.1 : 0.1;
+      const next = Math.min(3, Math.max(0.5, scaleRef.current + delta));
+      scaleRef.current = next;
+      setScale(next);
+      renderPage(pdfDoc, pageNum);
+      return;
+    }
+
+    // 普通滚轮 → 滚动边界处翻页
     if (now - wheelTimerRef.current < 200) return;
 
     const el = e.currentTarget;
@@ -235,7 +258,7 @@ export function usePdf() {
       goToPage(-1);
     }
     // 其他情况（页面内部滚动）不阻止默认行为
-  }, [pdfDoc, goToPage]);
+  }, [pdfDoc, pageNum, renderPage, goToPage]);
 
   // ==================== 副作用 ====================
 
@@ -277,7 +300,7 @@ export function usePdf() {
   // ==================== 导出 ====================
   return {
     // 状态
-    pdfDoc, pageNum, totalPages, loading, error,
+    pdfDoc, pageNum, totalPages, loading, error, scale,
     sidebarTab, setSidebarTab,
     outline,
     thumbRendered,

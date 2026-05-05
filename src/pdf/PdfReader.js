@@ -8,7 +8,7 @@ import PdfSidebar from './components/PdfSidebar';
  */
 export default function PdfReader() {
   const {
-    pdfDoc, pageNum, totalPages, loading, error,
+    pdfDoc, pageNum, totalPages, loading, error, scale,
     sidebarTab, setSidebarTab,
     outline,
     jumpInput, setJumpInput,
@@ -32,6 +32,7 @@ export default function PdfReader() {
         pdfDoc={pdfDoc}
         pageNum={pageNum}
         totalPages={totalPages}
+        scale={scale}
         jumpInput={jumpInput}
         sidebarTab={sidebarTab}
         outlineCount={outline.length}

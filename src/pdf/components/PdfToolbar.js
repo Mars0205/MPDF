@@ -5,6 +5,7 @@ export default function PdfToolbar({
   pdfDoc,
   pageNum,
   totalPages,
+  scale,
   jumpInput,
   sidebarTab,
   outlineCount,
@@ -63,6 +64,8 @@ export default function PdfToolbar({
           <button onClick={() => onGoToPage(1)} disabled={pageNum >= totalPages}>
             下一页
           </button>
+
+          <span className="zoom-label">{Math.round(scale * 100)}%</span>
         </>
       )}
     </div>
