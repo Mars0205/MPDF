@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/MPDF/static/css/main.74733673.css",
-    "main.js": "/MPDF/static/js/main.d94c074d.js",
+    "main.css": "/MPDF/static/css/main.5267159d.css",
+    "main.js": "/MPDF/static/js/main.2a527d5b.js",
     "static/js/453.e9e7ec89.chunk.js": "/MPDF/static/js/453.e9e7ec89.chunk.js",
     "index.html": "/MPDF/index.html",
-    "main.74733673.css.map": "/MPDF/static/css/main.74733673.css.map",
-    "main.d94c074d.js.map": "/MPDF/static/js/main.d94c074d.js.map",
+    "main.5267159d.css.map": "/MPDF/static/css/main.5267159d.css.map",
+    "main.2a527d5b.js.map": "/MPDF/static/js/main.2a527d5b.js.map",
     "453.e9e7ec89.chunk.js.map": "/MPDF/static/js/453.e9e7ec89.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.74733673.css",
-    "static/js/main.d94c074d.js"
+    "static/css/main.5267159d.css",
+    "static/js/main.2a527d5b.js"
   ]
 }
