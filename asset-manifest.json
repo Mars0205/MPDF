@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/MPDF/static/css/main.74733673.css",
+    "main.js": "/MPDF/static/js/main.354db2a5.js",
+    "static/js/453.e9e7ec89.chunk.js": "/MPDF/static/js/453.e9e7ec89.chunk.js",
+    "index.html": "/MPDF/index.html",
+    "main.74733673.css.map": "/MPDF/static/css/main.74733673.css.map",
+    "main.354db2a5.js.map": "/MPDF/static/js/main.354db2a5.js.map",
+    "453.e9e7ec89.chunk.js.map": "/MPDF/static/js/453.e9e7ec89.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.74733673.css",
+    "static/js/main.354db2a5.js"
+  ]
+}
